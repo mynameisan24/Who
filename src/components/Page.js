@@ -137,13 +137,13 @@ const Page = () => {
                 {[...filteredList].reverse().map((item) => (
                         <div
                             key={item.id}
-                            className="m-2  p-3 col-auto border border-primary border-2"
+                            className="m-2  p-3 col-auto border border-primary border-2 "
                         >
                             {" "}
                             <div className="m-0 p-0 ">
                                 {item.id}. {item.dispute}
                             </div>
-                            <div className="m-2 p-0 fs-5 fw-bold text-center">
+                            <div className="m-0 p-0 fs-5 fw-bold text-center">
                                 {item.winner === 1 && "Андріан -"}
                                 {item.winner === 2 && "Дмитрик -"}
                                 {item.winner === 3 && "Ромчик -"} {item.rank}
@@ -151,7 +151,7 @@ const Page = () => {
                             {item.detail !== 0 && (
                                 <div
                                     style={{ fontStyle: "italic" }}
-                                    className="m-0 p-0"
+                                    className="m-0 mt-1 p-0"
                                 >
                                     {item.detail}
                                 </div>
