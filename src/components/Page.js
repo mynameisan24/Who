@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { List } from "../components/List";
 
 import img_1 from "../image/1.jpg";
@@ -9,26 +9,40 @@ const Page = () => {
     // State to store the filtered data
     const [filteredList, setFilteredList] = useState(List);
     const [img, setImg] = useState(0);
+    const [quantity, setQuantity] = useState(0);
+
+
+    useEffect(() => {
+        setQuantity(filteredList.length);
+    }, [filteredList]);
 
     // Filter functions
     const neww = () => {
         setFilteredList(List.filter((item) => item.winner === 0));
         setImg(0);
+        setQuantity(0)
+
     };
 
     const an = () => {
         setFilteredList(List.filter((item) => item.winner === 1));
         setImg(1);
+        setQuantity(filteredList.length);
+        
     };
 
     const dima = () => {
         setFilteredList(List.filter((item) => item.winner === 2));
         setImg(2);
+
+        setQuantity(filteredList.length);
     };
 
     const roma = () => {
         setFilteredList(List.filter((item) => item.winner === 3));
         setImg(3);
+
+        setQuantity(filteredList.length);
     };
 
     const old = () => {
@@ -45,7 +59,7 @@ const Page = () => {
                     className={`m-0 p-2 col bg-primary text-white fw-bold border border-dark border-2 ${
                         img === 0 ? "border-white" : ""
                     }`}                >
-                    NEW
+                    +
                 </button>
                 <button
                     onClick={an}
@@ -74,13 +88,14 @@ const Page = () => {
                         img === 4 ? "border-white" : ""
                     }`}
                 >
-                    OLD
+                    -
                 </button>
             </div>
 
             {img !== 0 &&
                 img !== 4 && ( // Only render the img tag if img is not 0 and not 4
-                    <div className="m-0 p-3 row justify-content-center align-items-center">
+                    <div className="m-0 p-3 row justify-content-center align-items-center position-relative">
+
                         <img
                             src={
                                 img === 1
@@ -97,6 +112,8 @@ const Page = () => {
                             }}
                             className="m-0 p-0 col-8 col-sm-5 col-md-4 col-lg-3 col-xl-2 border border-2 border-primary rounded-circle"
                         />
+
+                        <div style={{position: 'absolute', bottom: '-20px', left: '50%', transform: 'translate(-50%, -50%)'}} className="m-0 p-2 fw-bold col-auto position-absolute rounded-pill text-white bg-primary d-flex justify-content-center align-items-center ">{quantity}</div>
 
                         {/* <div className="m-0 p-3 col-12 fs-1 fw-bold text-center">Aндріан</div> */}
                     </div>
